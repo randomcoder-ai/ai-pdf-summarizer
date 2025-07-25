@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = "AIzaSyAZlcoIv55lujZG0IwZsSvtK_BuwiZdSbE"; // IMPORTANT: PASTE YOUR GEMINI API KEY HERE
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // IMPORTANT: PASTE YOUR GEMINI API KEY HERE
 
 export async function generateSummary(text, config) {
   if (!GEMINI_API_KEY) {
