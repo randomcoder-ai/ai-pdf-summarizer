@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactGA from "react-ga4";
 import FileUpload from './components/FileUpload';
 import ConfigurationScreen from './components/ConfigurationScreen';
 import StyleSelectionScreen from './components/StyleSelectionScreen';
@@ -56,9 +57,16 @@ function App() {
         currentStep: 'selectStyle',
         isLoading: false,
       }));
+
+      // --- Send Custom Event to Google Analytics ---
+      ReactGA.event({
+        category: "User Interaction",
+        action: "Generate Summary",
+        label: `Format: ${config.summaryFormat}, Pages: ${config.summaryPages}`, // Optional: send config details
+      });
+      
     } catch (error) {
       console.error("The specific API error is:", error);
-      // THIS IS THE KEY CHANGE: We now display the actual error message from the API call.
       setAppState(prev => ({
         ...prev,
         isLoading: false,
